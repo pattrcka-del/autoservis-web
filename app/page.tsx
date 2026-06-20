@@ -48,14 +48,17 @@ export default function Home() {
 
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          
           <div className="text-2xl font-bold">
             AUTO<span className="text-red-500">SERVIS</span>
           </div>
+
           <nav className="hidden md:flex gap-8 text-zinc-300">
             <a href="#sluzby">Služby</a>
             <a href="#onas">O nás</a>
             <a href="#kontakt">Kontakt</a>
           </nav>
+
           <button className="bg-red-600 px-5 py-3 rounded-lg font-semibold">
             Objednat servis
           </button>
@@ -68,16 +71,20 @@ export default function Home() {
             <span className="text-red-500 font-semibold">
               Profesionální servis vozidel
             </span>
+
             <h1 className="text-5xl lg:text-7xl font-bold mt-4">
               Profesionální autoservis pro váš klid na cestách
             </h1>
+
             <p className="text-zinc-400 text-lg mt-6">
               Postaráme se o váš vůz rychle, kvalitně a za férovou cenu.
             </p>
+
             <div className="flex gap-4 mt-8">
               <button className="bg-red-600 px-8 py-4 rounded-lg font-semibold">
                 Objednat servis
               </button>
+
               <button className="border border-zinc-700 px-8 py-4 rounded-lg">
                 Zavolat nyní
               </button>
@@ -124,4 +131,3 @@ export default function Home() {
     </main>
   );
 }
-``
