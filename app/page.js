@@ -16,39 +16,63 @@ export default function Home() {
 
       <style>
         {`
+          html {
+            scroll-behavior: smooth;
+          }
+
           section {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            text-align: center;
             position: relative;
           }
 
           h1 {
             font-size: 64px;
-            text-align: center;
+            transition: all 0.6s ease;
           }
 
           p {
             color: #aaa;
             margin-top: 20px;
-            font-size: 18px;
           }
 
-          .image-wrapper {
+          .sticky {
             position: sticky;
             top: 0;
-            height: 100vh;
-            overflow: hidden;
           }
 
           .image {
             width: 100%;
-            height: 100%;
+            height: 100vh;
             object-fit: cover;
-            transform: scale(${1 + scroll * 0.0005});
-            transition: transform 0.1s ease;
+            transform: scale(${1 + scroll * 0.0006});
+            filter: brightness(${1 - scroll * 0.0005});
+            transition: all 0.1s ease;
+          }
+
+          .fade {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+          }
+
+          .fade.show {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: red;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
           }
         `}
       </style>
@@ -59,18 +83,18 @@ export default function Home() {
         <p>Rychlost. Kvalita. Důvěra.</p>
       </section>
 
-      {/* PARALLAX IMAGE */}
-      <div className="image-wrapper">
+      {/* STICKY IMAGE PARALLAX */}
+      <section className="sticky">
         <img
           className="image"
           src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c"
         />
-      </div>
+      </section>
 
       {/* TEXT SECTIONS */}
       <section>
-        <h1>Precizní servis</h1>
-        <p>Každý detail je důležitý</p>
+        <h1>Perfektní péče</h1>
+        <p>Každý detail má význam</p>
       </section>
 
       <section>
@@ -80,19 +104,9 @@ export default function Home() {
 
       <section>
         <h1>Objednejte se</h1>
-        <button style={{
-          marginTop: "20px",
-          padding: "15px 30px",
-          background: "red",
-          border: "none",
-          cursor: "pointer"
-        }}>
-          Kontaktovat
-        </button>
+        <button>Kontaktovat</button>
       </section>
 
     </main>
   );
 }
-
-{/* version 2 */}
