@@ -5,37 +5,24 @@ import { useEffect } from "react";
 export default function Home() {
 
   useEffect(() => {
-    const elements = document.querySelectorAll(".fade");
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const parallax = document.querySelector(".parallax");
 
-    const onScroll = () => {
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          el.classList.add("show");
-        }
-      });
+      if (parallax) {
+        parallax.style.transform = `translateY(${scrollY * 0.4}px)`;
+      }
     };
 
-    window.addEventListener("scroll", onScroll);
-    onScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <main style={{ fontFamily: "Arial", background: "#000", color: "#fff" }}>
+    <main style={{ background: "#000", color: "#fff", fontFamily: "Arial" }}>
 
       <style>
         {`
-          .fade {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
-          }
-
-          .fade.show {
-            opacity: 1;
-            transform: translateY(0);
-          }
-
           .hero {
             height: 100vh;
             display: flex;
@@ -45,9 +32,18 @@ export default function Home() {
             text-align: center;
           }
 
-          h1 {
-            font-size: 64px;
-            margin-bottom: 20px;
+          .parallax-container {
+            height: 80vh;
+            overflow: hidden;
+            position: relative;
+          }
+
+          .parallax {
+            position: absolute;
+            width: 100%;
+            height: 120%;
+            object-fit: cover;
+            top: -10%;
           }
 
           .section {
@@ -76,41 +72,40 @@ export default function Home() {
       </style>
 
       {/* HERO */}
-      <section className="hero fade">
-        <h1>Autoservis budoucnosti</h1>
+      <section className="hero">
+        <h1 style={{ fontSize: "64px" }}>
+          Autoservis budoucnosti
+        </h1>
+
         <p style={{ color: "#aaa" }}>
           Rychlost. Kvalita. Důvěra.
         </p>
       </section>
 
-      {/* IMAGE BLOCK */}
-      <section className="fade">
+      {/* PARALLAX IMAGE */}
+      <section className="parallax-container">
         <img
+          className="parallax"
           src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c"
-          style={{
-            width: "100%",
-            height: "80vh",
-            objectFit: "cover"
-          }}
         />
       </section>
 
-      {/* TEXT BLOCK */}
-      <section className="section fade">
-        <h1>Perfektní péče o váš vůz</h1>
-        <p style={{ color: "#aaa", maxWidth: "600px", margin: "auto" }}>
-          Moderní autoservis s důrazem na detail, přesnost a zákaznický komfort.
+      {/* TEXT */}
+      <section className="section">
+        <h1>Prémiový servis</h1>
+        <p style={{ color: "#aaa" }}>
+          Technologie a zkušenosti, na které se můžete spolehnout.
         </p>
       </section>
 
       {/* SERVICES */}
-      <section className="section fade">
+      <section className="section">
         <h1>Naše služby</h1>
 
         <div className="services">
           {[
             "Diagnostika",
-            "Brzdový servis",
+            "Brzdy",
             "Pneuservis",
             "Klimatizace",
             "Motor",
@@ -119,27 +114,14 @@ export default function Home() {
             <div key={i} className="card">
               <h3>{s}</h3>
               <p style={{ color: "#aaa" }}>
-                Precizní servis bez kompromisů.
+                Kvalita bez kompromisů.
               </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section fade">
-        <h1>Objednejte se ještě dnes</h1>
-        <button style={{
-          marginTop: "20px",
-          padding: "15px 30px",
-          background: "red",
-          border: "none",
-          cursor: "pointer"
-        }}>
-          Kontaktovat
-        </button>
-      </section>
-
     </main>
   );
 }
+``
