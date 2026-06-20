@@ -5,11 +5,10 @@ export default function Home() {
       color: "white",
       height: "100vh",
       display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      alignItems: "center"
     }}>
-      <h1>PARALLAX TEST ✅</h1>
+      <h1>TEST 123 ✅</h1>
     </main>
   );
 }
-``
